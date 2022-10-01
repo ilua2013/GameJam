@@ -6,7 +6,7 @@ public class PlayerClassed : MonoBehaviour
 
     private string _name;
     private int _healt;
-    private int _power;
+    private int _strength;
     private int _agility;
 
     private void OnEnable()
@@ -23,7 +23,7 @@ public class PlayerClassed : MonoBehaviour
     {
         _name = classPlayer.Name;
         _healt = classPlayer.Healt;
-        _power = classPlayer.Power;
+        _strength = classPlayer.Strength;
         _agility = classPlayer.Agility;       
     }
 }

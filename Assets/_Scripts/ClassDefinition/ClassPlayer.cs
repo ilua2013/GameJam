@@ -5,11 +5,11 @@ public class ClassPlayer : ScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private int _healt;
-    [SerializeField] private int _power;
+    [SerializeField] private int _strength;
     [SerializeField] private int _agility;
 
     public string Name => _name;
     public int Healt => _healt;
-    public int Power => _power;
+    public int Strength => _strength;
     public int Agility => _agility;
 }
