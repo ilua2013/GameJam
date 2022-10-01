@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour
 
         if (_picker == null) 
             _itemPicker = null;
+
+        _itemCells = FindObjectsOfType<ItemCell>();
     }
 
     private void OnEnable()
