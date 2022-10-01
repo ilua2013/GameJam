@@ -22,10 +22,15 @@ public class InputClick : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 1000) == false)
+            return;
+
+        if(hit.collider.TryGetComponent(out Item item))
         {
-            _playerMover.MoveTo(hit.point);
-            Debug.Log("Raycast Point" + hit.point);
+            _playerMover.MoveTo(item.transform.position);
         }
+
+        _playerMover.MoveTo(hit.point);
+        Debug.Log("Raycast Point" + hit.point);
     }
 }

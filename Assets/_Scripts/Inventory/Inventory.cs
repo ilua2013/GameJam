@@ -7,9 +7,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] private ItemCell[] _itemCells;
     [SerializeField] private Transform _content;
     [SerializeField] private GameObject _itemPicker;
+    [SerializeField] private float _distanceTakeItem;
 
     private IItemPicker _picker;
     private bool _isOpened;
+
+    public float DistanceToAddItem => _distanceTakeItem;
 
     private void OnValidate()
     {
