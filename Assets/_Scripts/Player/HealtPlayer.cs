@@ -31,6 +31,7 @@ public class HealtPlayer : MonoBehaviour
         if (_currentHealt <= 0)
         {
             PlayerDied?.Invoke();
+            gameObject.SetActive(false);
         }
     }
 

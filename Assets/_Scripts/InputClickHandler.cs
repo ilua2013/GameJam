@@ -9,16 +9,19 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
 {
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private QuestPerform _questPerform;
+    [SerializeField] private PlayerFighter _playerFighter;
     [SerializeField] private Inventory _inventory;
 
     private Coroutine _checkDistance;
 
     public event Action<Item> PickedUp;
+    public event Action NewDo;
 
     private void OnValidate()
     {
         _playerMover = FindObjectOfType<PlayerMover>();
         _inventory = FindObjectOfType<Inventory>();
+        _playerFighter = FindObjectOfType<PlayerFighter>();
     }
 
     private void Update()
@@ -35,7 +38,7 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1000) == false)
+        if (Physics.Raycast(ray, out hit, 1000, 1, QueryTriggerInteraction.Ignore) == false)
             return;
 
         if (_checkDistance != null)
@@ -57,8 +60,18 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
             _checkDistance = StartCoroutine(CheckDistance(speaker.transform, _questPerform.DistanceToSpeak, () => Speak(speaker)));
             return;
         }
+        else if(hit.transform.TryGetComponent(out EnemyFighter enemyFighter))
+        {
+            _playerMover.MoveTo(enemyFighter.transform.position);
+            _checkDistance = StartCoroutine(CheckDistance(enemyFighter.transform, _playerFighter.DistanceAttack, () => Fight(enemyFighter)));
+            return;
+        }
+        else
+        {
+            _playerMover.MoveTo(hit.point);
+        }
 
-        _playerMover.MoveTo(hit.point);
+        NewDo?.Invoke();
     }
 
     private IEnumerator CheckDistance(Transform target, float distance, Action onComplete = null)
@@ -80,5 +93,18 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
     {
         _playerMover.StopMove();
         speak.StartSpeak();
+    }
+
+    private void Fight(EnemyFighter enemyFighter)
+    {
+        _playerFighter.StartFight(enemyFighter);
+        _playerMover.StopMove();
+        NewDo += StopFight;
+    }
+
+    private void StopFight()
+    {
+        NewDo -= StopFight;
+        _playerFighter.StopFight();
     }
 }
