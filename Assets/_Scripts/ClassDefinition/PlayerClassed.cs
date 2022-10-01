@@ -9,6 +9,11 @@ public class PlayerClassed : MonoBehaviour
     private int _strength;
     private int _agility;
 
+    public string NameClass => _name;
+    public int MaxHelt => _healt;
+    public int MaxStrength => _strength;
+    public int MaxAgility => _agility;   
+
     private void OnEnable()
     {
         _classDefinition.ClassSelected += InitClass;
