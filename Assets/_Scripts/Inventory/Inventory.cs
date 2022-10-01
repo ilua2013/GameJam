@@ -55,14 +55,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Open()
+    public void Open()
     {
         PauseManager.Instance.Pause(true);
         _content.gameObject.SetActive(true);
         _isOpened = true;
     }
 
-    private void Close()
+    public void Close()
     {
         PauseManager.Instance.Pause(false);
         _content.gameObject.SetActive(false);
