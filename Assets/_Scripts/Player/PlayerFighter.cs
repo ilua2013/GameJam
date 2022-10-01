@@ -1,0 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerFighter : MonoBehaviour
+{
+    [SerializeField] private HealtPlayer _health;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _distanceToAttack;
+    [SerializeField] private float _delayBetweenAttack;
+
+    private Coroutine _fight = null;
+    private EnemyFighter _currentFighter;
+
+    public float DistanceAttack => _distanceToAttack;
+
+    public void StartFight(EnemyFighter enemyFighter)
+    {
+        _currentFighter = enemyFighter;
+
+        if (_fight == null)
+            _fight = StartCoroutine(Fight());
+    }
+
+    public void StopFight()
+    {
+        _fight = null;
+        _currentFighter = null;
+    }
+
+    public IEnumerator Fight()
+    {
+        float time = _delayBetweenAttack;
+
+        while (_currentFighter != null)
+        {
+            time += Time.deltaTime;
+
+            if (time >= _delayBetweenAttack)
+            {
+                TryAttack(_currentFighter);
+                time = 0;
+            }
+
+            yield return null;
+        }
+
+        _fight = null;
+        _currentFighter = null;
+    }
+
+    public void SetDamage(int damage)
+    {
+        if (damage < 0)
+            Debug.LogError("Damage < 0");
+
+        _damage = damage;
+    }
+
+    public void TryAttack(EnemyFighter enemyFighter)
+    {
+        if (Vector3.Distance(transform.position, enemyFighter.transform.position) > _distanceToAttack)
+            return;
+
+        enemyFighter.ApplyDamage(_damage);
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        _health.TakeDamage(damage);
+    }
+}

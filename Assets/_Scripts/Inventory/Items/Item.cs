@@ -24,6 +24,6 @@ public class Item : MonoBehaviour
 
     public void PickUp()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

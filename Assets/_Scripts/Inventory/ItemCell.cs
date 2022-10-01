@@ -11,8 +11,7 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private Image _image;
     [SerializeField] private Transform _dragParent;
     [SerializeField] private ItemType _itemType;
-
-    private Sprite _defaultSprite;
+    [SerializeField] private Sprite _defaultSprite;
 
     public ItemTemplate Item { get; private set; }
     public int Amount { get; private set; }
@@ -21,12 +20,21 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public event Action<ItemTemplate> ItemDropped;
 
-    private void Awake()
+    public bool CanPut(ItemTemplate item)
     {
-        _defaultSprite = _image.sprite;
+        if (item == null)
+            return true;
+        else if (item.ItemType != _itemType && _itemType != ItemType.All)
+            return false;
+        else if (IsEmpty)
+            return true;
+        else if (Item == item)
+            return true;
+        else
+            return false;
     }
 
-    public bool TryPut(ItemTemplate item)
+    public void Put(ItemTemplate item)
     {
         if (item == null)
         {
@@ -34,31 +42,19 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             IsEmpty = true;
 
             _image.sprite = _defaultSprite;
-
-            return true;
         }
-        else if (item.ItemType != _itemType && _itemType != ItemType.All)
-        {
-            return false;
-        }
-        else if(IsEmpty)
+        else if (IsEmpty)
         {
             Item = item;
             IsEmpty = false;
-            
-            _image.sprite = item.Sprite;
 
-            return true;
+            _image.sprite = item.Sprite;
         }
         else if (Item == item)
         {
             Amount++;
             IsEmpty = false;
-
-            return true;
         }
-        else
-            throw new InvalidOperationException($"You can't put an {item} here");
     }
 
     public ItemTemplate Remove()
@@ -115,15 +111,17 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void SwapItems(ItemCell swapCell)
     {
-        var swapItem = swapCell.Remove();
-
-        if (swapCell.TryPut(Item))
+        if (swapCell.CanPut(Item))
         {
-            Remove();
-            TryPut(swapItem);
+            if (CanPut(swapCell.Item))
+            {
+                var item = Remove();
+                var swapItem = swapCell.Remove();
+
+                swapCell.Put(item);
+                CanPut(swapItem);
+            }
         }
-        else
-            swapCell.TryPut(swapItem);
     }
 
     private void ResetItemPosition()

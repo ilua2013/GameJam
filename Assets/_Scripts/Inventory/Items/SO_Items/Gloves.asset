@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Gloves
   _description: Gloves
-  _sprite: {fileID: 21300000, guid: 7f5077902f34e4dcda6e69df4ced83a7, type: 3}
-  _itemPrefab: {fileID: 0}
-  _itemType: 0
-  _armor: 0
+  _sprite: {fileID: 21300000, guid: f5700886639930a47a4757439025b2da, type: 3}
+  _itemPrefab: {fileID: 6582158635608362974, guid: 72d165fec2abd9e4fb8b8b95d30b3e4a, type: 3}
+  _itemType: 4
+  _armor: 10

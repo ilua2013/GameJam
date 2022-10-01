@@ -14,13 +14,16 @@ public class Mover : MonoBehaviour, IPauseHandler
     private void OnEnable()
     {
         Register(this);
+
+        if(_inventory != null)
         _inventory.AddedItem += StopMove;
     }
 
     private void OnDisable()
     {
         UnRegister(this);
-        _inventory.AddedItem -= StopMove;
+        if (_inventory != null)
+            _inventory.AddedItem -= StopMove;
     }
 
     public void Register(IPauseHandler handler)

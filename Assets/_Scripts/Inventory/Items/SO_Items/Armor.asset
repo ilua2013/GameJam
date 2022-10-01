@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Armor
   _description: Armor
-  _sprite: {fileID: 21300000, guid: bb64c20ed77d24114a7abe1065533a0b, type: 3}
+  _sprite: {fileID: 21300000, guid: e04187d745260b64eb074cea853eca77, type: 3}
   _itemPrefab: {fileID: 56780506959583541, guid: 4186dfc782668ec4cbe944a3bd94ff7e, type: 3}
   _itemType: 5
   _armor: 25
