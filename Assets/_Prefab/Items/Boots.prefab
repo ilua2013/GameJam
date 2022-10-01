@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8395235481015634323
+--- !u!1 &3116174161501226705
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8395235481015634327}
-  - component: {fileID: 8395235481015634320}
-  - component: {fileID: 8395235481015634321}
-  - component: {fileID: 8395235481015634322}
-  - component: {fileID: 6952192266292779038}
+  - component: {fileID: 2338792414945762411}
+  - component: {fileID: 1718920241070166990}
+  - component: {fileID: 3476255080740005636}
+  - component: {fileID: 8751797864470359857}
+  - component: {fileID: 1479752362479634693}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8395235481015634327
+--- !u!4 &2338792414945762411
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395235481015634323}
-  m_LocalRotation: {x: -0, y: -0, z: 0.378726, w: 0.92550886}
-  m_LocalPosition: {x: 1.6, y: -48.1, z: 134.8}
-  m_LocalScale: {x: 1.3456317, y: 6.2313867, z: 0.8456871}
+  m_GameObject: {fileID: 3116174161501226705}
+  m_LocalRotation: {x: 2.0807127e-14, y: 1, z: -0.00000008146034, w: 0.00000019470718}
+  m_LocalPosition: {x: 7.67, y: -53.8, z: 98.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.51}
---- !u!33 &8395235481015634320
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1718920241070166990
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395235481015634323}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8395235481015634321
+  m_GameObject: {fileID: 3116174161501226705}
+  m_Mesh: {fileID: -1596188993240750669, guid: deaed5b9c3675e443bfb9c885bff854f, type: 3}
+--- !u!23 &3476255080740005636
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395235481015634323}
+  m_GameObject: {fileID: 3116174161501226705}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ba5bc63be39abaf4893441122f258542, type: 2}
+  - {fileID: 2100000, guid: 80097dd93c9d84f4dbf15ace61247c03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,30 +86,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8395235481015634322
-CapsuleCollider:
+--- !u!65 &8751797864470359857
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395235481015634323}
+  m_GameObject: {fileID: 3116174161501226705}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6952192266292779038
+  serializedVersion: 2
+  m_Size: {x: 0.7897108, y: 0.3499553, z: 0.84485763}
+  m_Center: {x: -1.1319053e-21, y: 0.16703974, z: 0.23028687}
+--- !u!114 &1479752362479634693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395235481015634323}
+  m_GameObject: {fileID: 3116174161501226705}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e44ba4009e123c4186eb12e1386bbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemTemplate: {fileID: 11400000, guid: 7508c5c083aec49418f8360f824ed563, type: 2}
+  _itemTemplate: {fileID: 11400000, guid: d1266ac3c051c83408a367c27e06a260, type: 2}
+  _itemType: 6

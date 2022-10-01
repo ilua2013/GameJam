@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: LittleHealer
   _description: Very big healer
-  _sprite: {fileID: 21300000, guid: 980f0fabaaf07df4bbfe68d89cc384e9, type: 3}
-  _itemPrefab: {fileID: 6838009679032324987, guid: 31d57d55ba0daab41bd6080bcfba0bf5, type: 3}
+  _sprite: {fileID: 21300000, guid: 04d19b66807d0244d8a88230c5144edd, type: 3}
+  _itemPrefab: {fileID: 6125109110933888720, guid: 31d57d55ba0daab41bd6080bcfba0bf5, type: 3}
   _itemType: 1
   _volume: 50

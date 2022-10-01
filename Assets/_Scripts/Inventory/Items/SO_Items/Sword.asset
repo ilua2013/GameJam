@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sword
   _description: Power!
-  _sprite: {fileID: 21300000, guid: 413710b631bd5493ebbf1a29b2d82eb3, type: 3}
-  _itemPrefab: {fileID: 8534208930076096244, guid: 2dd02508583f0904a87b6f1d0597d4ce, type: 3}
+  _sprite: {fileID: 21300000, guid: 465a3c60f2560f04586f10b5df1a7051, type: 3}
+  _itemPrefab: {fileID: 3443816201554926030, guid: 2dd02508583f0904a87b6f1d0597d4ce, type: 3}
   _itemType: 2
   _damage: 10
