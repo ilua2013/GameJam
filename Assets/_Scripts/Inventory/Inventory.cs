@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     private bool _isOpened;
 
     public event Action AddedItem;
-    public event Action<ItemTemplate> AddedItem_get;
+    public event Action<Item> AddedItem_get;
 
     public float DistanceToAddItem => _distanceToAddItem;
 
@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     private void OnPickUp(Item item)
     {
-        AddItem(item.ItemTemplate);
+        AddItem(item);
     }
 
     private void OnItemDrop(ItemTemplate itemTemplate)
@@ -79,13 +79,13 @@ public class Inventory : MonoBehaviour
         var item = Instantiate(itemTemplate.ItemPrefab, null);
     }
 
-    private void AddItem(ItemTemplate item)
+    private void AddItem(Item item)
     {
         foreach (var cell in _itemCells)
         {
-            if (cell.Item == item || cell.IsEmpty)
+            if (cell.Item == item.ItemTemplate || cell.IsEmpty)
             {
-                if (cell.TryPut(item))
+                if (cell.TryPut(item.ItemTemplate))
                 {
                     AddedItem?.Invoke();
                     AddedItem_get?.Invoke(item);
