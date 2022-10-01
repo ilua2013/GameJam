@@ -10,12 +10,14 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private Image _image;
     [SerializeField] private Transform _dragParent;
+    [SerializeField] private ItemType _itemType;
 
     private Sprite _defaultSprite;
 
     public ItemTemplate Item { get; private set; }
     public int Amount { get; private set; }
     public bool IsEmpty { get; private set; } = true;
+    public ItemType ItemType => _itemType;
 
     public event Action<ItemTemplate> ItemDropped;
 
@@ -24,14 +26,20 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         _defaultSprite = _image.sprite;
     }
 
-    public void Put(ItemTemplate item)
+    public bool TryPut(ItemTemplate item)
     {
         if (item == null)
         {
-            Item = null;
+            Item = item;
             IsEmpty = true;
 
             _image.sprite = _defaultSprite;
+
+            return true;
+        }
+        else if (item.ItemType != _itemType && _itemType != ItemType.All)
+        {
+            return false;
         }
         else if(IsEmpty)
         {
@@ -39,11 +47,15 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             IsEmpty = false;
             
             _image.sprite = item.Sprite;
+
+            return true;
         }
         else if (Item == item)
         {
             Amount++;
             IsEmpty = false;
+
+            return true;
         }
         else
             throw new InvalidOperationException($"You can't put an {item} here");
@@ -105,8 +117,13 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         var swapItem = swapCell.Remove();
 
-        swapCell.Put(Remove());
-        Put(swapItem);
+        if (swapCell.TryPut(Item))
+        {
+            Remove();
+            TryPut(swapItem);
+        }
+        else
+            swapCell.TryPut(swapItem);
     }
 
     private void ResetItemPosition()

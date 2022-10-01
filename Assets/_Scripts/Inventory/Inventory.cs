@@ -76,8 +76,8 @@ public class Inventory : MonoBehaviour
         {
             if (cell.Item == item || cell.IsEmpty)
             {
-                cell.Put(item);
-                return;
+                if (cell.TryPut(item))
+                   return;
             }
         }
     }

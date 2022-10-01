@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b4344b874f9664da7c176ad3d1a38a, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  _name: Sword
+  _description: Power!
+  _sprite: {fileID: 21300000, guid: 413710b631bd5493ebbf1a29b2d82eb3, type: 3}
+  _itemPrefab: {fileID: 8534208930076096244, guid: 2dd02508583f0904a87b6f1d0597d4ce, type: 3}
+  _itemType: 2
+  _damage: 10
