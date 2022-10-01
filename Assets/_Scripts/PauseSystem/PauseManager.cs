@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+public class PauseManager : MonoBehaviour, IPauseHandler
 {
     public static PauseManager Instance { get; private set; }
 
