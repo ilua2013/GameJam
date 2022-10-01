@@ -86,8 +86,9 @@ public class Inventory : MonoBehaviour
         {
             if (cell.Item == item.ItemTemplate || cell.IsEmpty)
             {
-                if (cell.TryPut(item.ItemTemplate))
+                if (cell.CanPut(item.ItemTemplate))
                 {
+                    cell.Put(item.ItemTemplate);
                     AddedItem?.Invoke();
                     AddedItem_get?.Invoke(item);
                     return;
