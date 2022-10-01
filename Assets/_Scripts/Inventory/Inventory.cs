@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
         if (_picker == null) 
             _itemPicker = null;
 
-        _itemCells = FindObjectsOfType<ItemCell>();
+        _itemCells = FindObjectsOfType<ItemCell>(true);
     }
 
     private void OnEnable()
@@ -72,6 +72,7 @@ public class Inventory : MonoBehaviour
     private void OnPickUp(Item item)
     {
         AddItem(item);
+        item.PickUp();
     }
 
     private void OnItemDrop(ItemTemplate itemTemplate)
