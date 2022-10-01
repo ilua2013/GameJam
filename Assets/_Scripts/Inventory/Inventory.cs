@@ -22,11 +22,17 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         _picker.PickedUp += OnPickUp;
+
+        foreach (var item in _itemCells)
+            item.ItemDropped += OnItemDrop;
     }
 
     private void OnDisable()
     {
         _picker.PickedUp -= OnPickUp;
+
+        foreach (var item in _itemCells)
+            item.ItemDropped -= OnItemDrop;
     }
 
     private void Update()
@@ -57,6 +63,11 @@ public class Inventory : MonoBehaviour
     private void OnPickUp(Item item)
     {
         AddItem(item.ItemTemplate);
+    }
+
+    private void OnItemDrop(ItemTemplate itemTemplate)
+    {
+        var item = Instantiate(itemTemplate.ItemPrefab, null);
     }
 
     private void AddItem(ItemTemplate item)

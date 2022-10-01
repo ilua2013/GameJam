@@ -25,7 +25,6 @@ public class InputClick : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1000))
         {
             _playerMover.MoveTo(hit.point);
-            Debug.Log("Raycast Point" + hit.point);
         }
     }
 }

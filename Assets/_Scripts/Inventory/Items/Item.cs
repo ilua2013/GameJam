@@ -7,4 +7,9 @@ public class Item : MonoBehaviour
     [SerializeField] private ItemTemplate _itemTemplate;
 
     public ItemTemplate ItemTemplate => _itemTemplate;
+
+    public void PickUp()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa39cd4670e2a8d469b8ce9c0b4fe464, type: 3}
-  m_Name: LittleHealer
+  m_Name: BigHealer
   m_EditorClassIdentifier: 
-  _name: LittleHealer
+  _name: BigHealer
   _description: Very big healer
-  _sprite: {fileID: 21300000, guid: db7e0a9bb3c471e4bbde4adc6363c028, type: 3}
+  _sprite: {fileID: 21300000, guid: ae8a5bdf1b3a4f646b47c8aeebd9d598, type: 3}
+  _itemPrefab: {fileID: 6063585378557399620, guid: 4405b1370150ff7498386271e0aa05e8, type: 3}
   _volume: 50
