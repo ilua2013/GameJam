@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
+using UnityEngine.UI;
 
 public class InputClickHandler : MonoBehaviour, IItemPicker
 {
     [SerializeField] private PlayerMover _playerMover;
+    [SerializeField] private QuestPerform _questPerform;
     [SerializeField] private Inventory _inventory;
 
     private Coroutine _checkDistance;
@@ -20,6 +23,9 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
             ShootRaycast();
     }
@@ -39,10 +45,16 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
             _checkDistance = null;
         }
 
-        if(hit.collider.TryGetComponent(out Item item))
+        if (hit.collider.TryGetComponent(out Item item))
         {
             _playerMover.MoveTo(item.transform.position);
-            _checkDistance = StartCoroutine(CheckDistance(item.transform, _inventory.DistanceToAddItem,() => OnReachedItem(item)));
+            _checkDistance = StartCoroutine(CheckDistance(item.transform, _inventory.DistanceToAddItem, () => OnReachedItem(item)));
+            return;
+        }
+        else if (hit.collider.TryGetComponent(out Speaker speaker))
+        {
+            _playerMover.MoveTo(speaker.transform.position);
+            _checkDistance = StartCoroutine(CheckDistance(speaker.transform, _questPerform.DistanceToSpeak, () => Speak(speaker)));
             return;
         }
 
@@ -62,5 +74,11 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
     private void OnReachedItem(Item item)
     {
         PickedUp?.Invoke(item);
+    }
+
+    private void Speak(Speaker speak)
+    {
+        _playerMover.StopMove();
+        speak.StartSpeak();
     }
 }

@@ -44,7 +44,7 @@ public class Mover : MonoBehaviour, IPauseHandler
         StopMove();
     }
 
-    private void StopMove()
+    public void StopMove()
     {
         _agent.SetDestination(transform.position);
     }

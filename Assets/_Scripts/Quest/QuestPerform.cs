@@ -6,6 +6,9 @@ using System;
 public class QuestPerform : MonoBehaviour
 {
     [SerializeField] private List<Quest> _quests;
+    [SerializeField] private float _distanceToSpeak;
+
+    public float DistanceToSpeak => _distanceToSpeak;
 
     public event Action AddedQuest;
 
