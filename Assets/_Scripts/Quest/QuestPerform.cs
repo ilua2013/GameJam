@@ -19,6 +19,8 @@ public class QuestPerform : MonoBehaviour
             return;
 
         _quests.Add(quest);
+
+        quest.FollowQuestComplete(_inventory);
         quest.Completed += RemoveQuest;
 
         AddedQuest?.Invoke();
