@@ -10,7 +10,6 @@ public class ItemCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     [SerializeField] private Image _image;
     [SerializeField] private Transform _dragParent;
-    [SerializeField] private LayerMask _layerMask;
 
     private Sprite _defaultSprite;
 
