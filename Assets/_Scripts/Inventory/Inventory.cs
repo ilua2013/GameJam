@@ -63,16 +63,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (var cell in _itemCells)
         {
-            if (cell.Item == item)
-            {
-                cell.Put(item);
-                return;
-            }
-        }
-
-        foreach (var cell in _itemCells)
-        {
-            if (cell.IsEmpty)
+            if (cell.Item == item || cell.IsEmpty)
             {
                 cell.Put(item);
                 return;
