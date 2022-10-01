@@ -17,7 +17,10 @@ public class Character : MonoBehaviour, IItemPicker
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 if (hit.collider.TryGetComponent(out Item item))
+                {
                     PickedUp?.Invoke(item);
+                    item.PickUp();
+                }
             }
         }
     }

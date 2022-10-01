@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private ItemCell[] _itemCells;
     [SerializeField] private Transform _content;
     [SerializeField] private GameObject _itemPicker;
-    [SerializeField] private float _distanceTakeItem;
 
     private IItemPicker _picker;
     private bool _isOpened;
-
-    public event Action AddedItem;
-
-    public float DistanceToAddItem => _distanceTakeItem;
 
     private void OnValidate()
     {
@@ -28,11 +22,17 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         _picker.PickedUp += OnPickUp;
+
+        foreach (var item in _itemCells)
+            item.ItemDropped += OnItemDrop;
     }
 
     private void OnDisable()
     {
         _picker.PickedUp -= OnPickUp;
+
+        foreach (var item in _itemCells)
+            item.ItemDropped -= OnItemDrop;
     }
 
     private void Update()
@@ -65,16 +65,19 @@ public class Inventory : MonoBehaviour
         AddItem(item.ItemTemplate);
     }
 
+    private void OnItemDrop(ItemTemplate itemTemplate)
+    {
+        var item = Instantiate(itemTemplate.ItemPrefab, null);
+    }
+
     private void AddItem(ItemTemplate item)
     {
         foreach (var cell in _itemCells)
         {
             if (cell.Item == item || cell.IsEmpty)
             {
-                cell.Put(item);
-                AddedItem?.Invoke();
-                print("ItemAdded");
-                return;
+                if (cell.TryPut(item))
+                   return;
             }
         }
     }
