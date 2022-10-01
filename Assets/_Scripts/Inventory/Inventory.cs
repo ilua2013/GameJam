@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private ItemCell[] _itemCells;
     [SerializeField] private Transform _content;
     [SerializeField] private GameObject _itemPicker;
+    [SerializeField] private float _distanceToAddItem;
 
     private IItemPicker _picker;
     private bool _isOpened;
+
+    public event Action AddedItem;
+    public event Action<ItemTemplate> AddedItem_get;
+
+    public float DistanceToAddItem => _distanceToAddItem;
 
     private void OnValidate()
     {
@@ -77,7 +84,11 @@ public class Inventory : MonoBehaviour
             if (cell.Item == item || cell.IsEmpty)
             {
                 if (cell.TryPut(item))
-                   return;
+                {
+                    AddedItem?.Invoke();
+                    AddedItem_get?.Invoke(item);
+                    return;
+                }
             }
         }
     }
