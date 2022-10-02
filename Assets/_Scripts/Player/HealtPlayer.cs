@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealtPlayer : MonoBehaviour
+public class HealtPlayer : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerParameter _playerParameter;
 
     private int _currentHealt;
     private int _maxHealt;
 
+    public int MaxHealth  => _maxHealt;
+
     public event UnityAction PlayerDied;
-    public event UnityAction<int> ChangedHealt;
+    public event UnityAction<int> ChangedHealt;    
+    public event Action<int> Damaged;
 
     private void OnEnable()
     {       
@@ -25,6 +29,7 @@ public class HealtPlayer : MonoBehaviour
     {
         _currentHealt -= damage;
         ChangedHealt?.Invoke(_currentHealt);
+        Damaged?.Invoke(damage);
         if (_currentHealt <= 0)
         {
             PlayerDied?.Invoke();

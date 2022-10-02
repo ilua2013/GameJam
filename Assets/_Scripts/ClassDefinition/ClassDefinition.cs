@@ -28,7 +28,6 @@ public class ClassDefinition : MonoBehaviour
     private void PassClass(ClassPlayer classPlayer)
     {
         ChoiceOver?.Invoke();
-        ClassSelected?.Invoke(classPlayer);
-        PlayerPrefs.SetInt("classSelected", 1);
+        ClassSelected?.Invoke(classPlayer);        
     }
 }

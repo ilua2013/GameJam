@@ -27,6 +27,5 @@ public class PanelClassChoice : MonoBehaviour
         yield return delay;
         _healthBar.gameObject.SetActive(true);
         gameObject.SetActive(false);
-
     }
 }
