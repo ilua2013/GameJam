@@ -16,6 +16,7 @@ public class PlayerFighter : MonoBehaviour
 
     public event UnityAction<EnemyFighter> BattleBegun;
     public event Action Attacked;
+    public event Action Killed;
 
     public float DistanceAttack => _distanceToAttack;
 
@@ -37,14 +38,13 @@ public class PlayerFighter : MonoBehaviour
     public IEnumerator Fight()
     {
         float time = 0;
-
         while (_currentFighter != null)
         {
-            Attacked?.Invoke();
             time += Time.deltaTime;
 
             if (time >= _delayBetweenAttack)
             {
+            Attacked?.Invoke();
                 TryAttack(_currentFighter);
                 time = 0;
             }
@@ -69,7 +69,7 @@ public class PlayerFighter : MonoBehaviour
         if (Vector3.Distance(transform.position, enemyFighter.transform.position) > _distanceToAttack)
             return;
 
-        enemyFighter.ApplyDamage(_damage);
+        enemyFighter.ApplyDamage(_damage, () => Killed?.Invoke());
     }
 
     public void ApplyDamage(int damage)

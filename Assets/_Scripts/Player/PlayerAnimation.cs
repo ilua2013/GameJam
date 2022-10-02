@@ -10,15 +10,12 @@ public class PlayerAnimation : MonoBehaviour
 
     enum State
     {
-        Idle, Attack, Run
+        Idle, Attack, Run, Move
     }
 
     private void Update()
     {
-        if (_mover.IsStop)
-            SetIdle();
-        else
-            SetRun();
+        _animator.SetBool(State.Move.ToString(), !_mover.IsStop); ;
     }
 
     private void OnEnable()
@@ -43,6 +40,7 @@ public class PlayerAnimation : MonoBehaviour
     private void SetAttack()
     {
         _animator.SetTrigger(State.Attack.ToString());
+        print("AnimatorAttack");
     }
 
     private void SetRun()

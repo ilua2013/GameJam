@@ -10,7 +10,7 @@ public class Mover : MonoBehaviour, IPauseHandler
     public event Action Stoped;
     public event Action Moved;
 
-    public bool IsStop => _agent.isStopped;
+    public bool IsStop => _agent.velocity == Vector3.zero;
 
     private void OnValidate()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyFighter : MonoBehaviour
 {
@@ -30,7 +31,6 @@ public class EnemyFighter : MonoBehaviour
     {
         _currentFighter = enemyFighter;
         _enemy.MoveTo(enemyFighter.transform.position);
-        print("StartFight");
         if (_fight == null)
             _fight = StartCoroutine(Fight());
     }
@@ -44,11 +44,9 @@ public class EnemyFighter : MonoBehaviour
     public IEnumerator Fight()
     {
         float time = _delayBetweenAttack;
-        print("111");
         while (_currentFighter != null)
         {
             time += Time.deltaTime;
-            print("222");
 
             if (time >= _delayBetweenAttack)
             {
@@ -79,8 +77,9 @@ public class EnemyFighter : MonoBehaviour
         enemyFighter.ApplyDamage(_damage);
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(int damage, Action onKill = null)
     {
-        _health.TakeDamage(damage);
+        if(_health.Health > 0)
+        _health.TakeDamage(damage, onKill);
     }
 }
