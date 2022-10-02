@@ -11,11 +11,13 @@ public class PlayerFighter : MonoBehaviour
     [SerializeField] private float _delayBetweenAttack;
 
     private Coroutine _fight = null;
-    private EnemyFighter _currentFighter;
+    private EnemyFighter _currentFighter = null;
 
     public event UnityAction<EnemyFighter> BattleBegun;
 
     public float DistanceAttack => _distanceToAttack;
+
+    public EnemyFighter CurrentFighter => _currentFighter;
 
     public void StartFight(EnemyFighter enemyFighter)
     {
@@ -23,6 +25,7 @@ public class PlayerFighter : MonoBehaviour
 
         if (_fight == null)
             _fight = StartCoroutine(Fight());
+
         BattleBegun?.Invoke(enemyFighter);
     }
 

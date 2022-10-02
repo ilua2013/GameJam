@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFighter : MonoBehaviour
+public class EnemyFighter : MonoBehaviour, IPushable
 {
     [SerializeField] private HealthEnemy _health;
     [SerializeField] private EnemyMover _enemy;
     [SerializeField] private ColliderEnemy _collider;
+    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private int _damage;
     [SerializeField] private float _distanceToAttack;
     [SerializeField] private float _delayBetweenAttack;
@@ -15,6 +16,8 @@ public class EnemyFighter : MonoBehaviour
     private PlayerFighter _currentFighter;
 
     public float DistanceAttack => _distanceToAttack;
+
+    public Rigidbody Rigidbody => _rigidbody;
 
     private void OnEnable()
     {
@@ -82,5 +85,10 @@ public class EnemyFighter : MonoBehaviour
     public void ApplyDamage(int damage)
     {
         _health.TakeDamage(damage);
+    }
+
+    public void Push(Vector3 direction)
+    {
+        _rigidbody.AddForce(direction);
     }
 }
