@@ -13,18 +13,21 @@ public class HealthEnemy : MonoBehaviour
     public event Action<int> Died;
     public event Action<int> ChangedHealt;
 
+    public int Health => _currentHealt;
+
     private void OnEnable()
     {
         _currentHealt = _maxHealt;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Action onKill = null)
     {
         _currentHealt -= damage;
         ChangedHealt?.Invoke(_currentHealt);
         if (_currentHealt <= 0)
         {
             Died?.Invoke(_experience);
+            onKill?.Invoke();
             gameObject.SetActive(false);
         }
     }
