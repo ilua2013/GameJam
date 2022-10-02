@@ -1,0 +1,41 @@
+newmtl Solid
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+Ns 0.0
+illum 0
+
+newmtl Beklemishev-tower-200k.1001
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+Ns 0.0
+illum 0
+map_Kd Beklemishev-tower-200k.1001.jpg
+map_Bump Beklemishev-tower-200k_normal.1001.jpg
+map_ao Beklemishev-tower-200k_occlusion.1001.jpg
+
+newmtl Beklemishev-tower-200k.1002
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+Ns 0.0
+illum 0
+map_Kd Beklemishev-tower-200k.1002.jpg
+map_Bump Beklemishev-tower-200k_normal.1002.jpg
+map_ao Beklemishev-tower-200k_occlusion.1002.jpg
+
+newmtl Beklemishev-tower-200k.1003
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+Ns 0.0
+illum 0
+map_Kd Beklemishev-tower-200k.1003.jpg
+map_Bump Beklemishev-tower-200k_normal.1003.jpg
+map_ao Beklemishev-tower-200k_occlusion.1003.jpg
+
