@@ -9,7 +9,7 @@ public class ImpulseSpell : Spell
     [SerializeField] private ParticleSystem _visualEffectTemplate;
     
     private Collider _impulseArea;
-    private List<EnemyFighter> _enemies = new List<EnemyFighter>();
+    private List<IPushable> _enemies = new List<IPushable>();
 
     private void Awake()
     {
@@ -29,8 +29,8 @@ public class ImpulseSpell : Spell
 
         foreach (var enemy in _enemies)
         {
-            enemy.ApplyDamage(_damage);
-            //enemy.
+            Vector3 direction = (enemy.Rigidbody.position - transform.position) / 2 + Vector3.up * 3;
+            enemy.Push(direction * 150f, _damage);
         }
 
         var effect = Instantiate(_visualEffectTemplate, SpawnPoint.position, SpawnPoint.rotation, SpawnPoint);
@@ -41,13 +41,13 @@ public class ImpulseSpell : Spell
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out EnemyFighter enemy))
+        if (other.TryGetComponent(out IPushable enemy))
             _enemies.Add(enemy);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out EnemyFighter enemy))
+        if (other.TryGetComponent(out IPushable enemy))
             if (_enemies.Contains(enemy))
                 _enemies.Remove(enemy);
     }

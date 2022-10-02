@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IPushable
 {
     Rigidbody Rigidbody { get; }
-    void Push(Vector3 direction);
+    void Push(Vector3 direction, int damage);
 }

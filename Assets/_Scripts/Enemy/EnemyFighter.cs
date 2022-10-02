@@ -87,8 +87,10 @@ public class EnemyFighter : MonoBehaviour, IPushable
         _health.TakeDamage(damage);
     }
 
-    public void Push(Vector3 direction)
+    public void Push(Vector3 direction, int damage)
     {
+        Debug.Log("Push");
+        ApplyDamage(damage);
         _rigidbody.AddForce(direction);
     }
 }
