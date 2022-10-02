@@ -15,4 +15,5 @@ MonoBehaviour:
   _name: "\u041F\u0440\u0438\u043D\u0435\u0441\u0438 3 \u0445\u0443\u0439\u043D\u0438"
   _enemyKill: []
   _itemDelivery: []
-  _npcSpeak: []
+  _npcSpeak:
+  - {fileID: 3216208461994985290, guid: 776703a0a56636c43870666eff390deb, type: 3}

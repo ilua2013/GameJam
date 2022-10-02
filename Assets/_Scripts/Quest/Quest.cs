@@ -7,16 +7,36 @@ using System;
 public class Quest : ScriptableObject
 {
     [SerializeField] private string _name;
-    [SerializeField] private List<GameObject> _enemyKill;
+    [SerializeField] private List<EnemyFighter> _enemyKill;
     [SerializeField] private List<Item> _itemDelivery;
-    [SerializeField] private List<GameObject> _npcSpeak;
+    [SerializeField] private List<Speaker> _npcSpeak;
 
     public event Action<Quest> Completed;
 
-    public void FollowQuestComplete(Inventory inventory)
+    public void FollowOnTakeItem(Inventory inventory)
     {
+        if (_itemDelivery.Count == 0)
+            return;
+
         inventory.AddedItem_get += OnAddItem;
         Debug.Log("Quest Follow");
+    }
+
+    public void FollowOnKill(PlayerFighter player)
+    {
+        if (_enemyKill.Count == 0)
+            return;
+
+        player.Killed_get += OnKill;
+    }
+
+    public void FollowOnSpeak()
+    {
+        if (_npcSpeak.Count == 0)
+            return;
+
+        foreach (var item in _npcSpeak)
+            item.StartedSpeak_getThis += OnSpeak;
     }
 
     private void OnAddItem(Item item)
@@ -27,6 +47,39 @@ public class Quest : ScriptableObject
             {
                 _itemDelivery.Remove(items);
                 Debug.Log("Quest - AddItem");
+
+                break;
+            }
+        }
+
+        CheckCompleted();
+    }
+
+    private void OnKill(EnemyFighter enemyFighter)
+    {
+        foreach (var items in _enemyKill)
+        {
+            if (enemyFighter.GetType() == items.GetType())
+            {
+                _enemyKill.Remove(items);
+                Debug.Log("Quest - Kill");
+
+                break;
+            }
+        }
+
+        CheckCompleted();
+    }
+
+    private void OnSpeak(Speaker speaker)
+    {
+        foreach (var items in _npcSpeak)
+        {
+            if (speaker.Name == items.Name)
+            {
+                items.StartedSpeak_getThis -= OnSpeak;
+                _npcSpeak.Remove(items);
+                Debug.Log("Quest - Kill");
 
                 break;
             }

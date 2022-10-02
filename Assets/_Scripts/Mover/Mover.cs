@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Mover : MonoBehaviour, IPauseHandler
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Inventory _inventory;
+
+    public event Action Stoped;
+    public event Action Moved;
+    public event Action<Vector3> Moved_getPos;
+
+    public bool IsStop => _agent.velocity == Vector3.zero;
 
     private void OnValidate()
     {
@@ -39,6 +46,9 @@ public class Mover : MonoBehaviour, IPauseHandler
     public void MoveTo(Vector3 position)
     {
         _agent.SetDestination(position);
+
+        Moved_getPos?.Invoke(position);
+        Moved?.Invoke();
     }
 
     public void Pause(bool isPaused)
@@ -50,5 +60,6 @@ public class Mover : MonoBehaviour, IPauseHandler
     public void StopMove()
     {
         _agent.SetDestination(transform.position);
+        Stoped?.Invoke();
     }
 }

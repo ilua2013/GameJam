@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class EnemyFighter : MonoBehaviour
+public class EnemyFighter : MonoBehaviour, IPushable
 {
     [SerializeField] private HealthEnemy _health;
-    [SerializeField] private EnemyMover _enemy;
+    [SerializeField] private EnemyMover _mover;
     [SerializeField] private ColliderEnemy _collider;
+    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private int _damage;
     [SerializeField] private float _distanceToAttack;
     [SerializeField] private float _delayBetweenAttack;
+    [SerializeField] private Animator _animator;
 
     private Coroutine _fight;
     private PlayerFighter _currentFighter;
 
     public float DistanceAttack => _distanceToAttack;
+
+    public Rigidbody Rigidbody => _rigidbody;
 
     private void OnEnable()
     {
@@ -29,8 +34,7 @@ public class EnemyFighter : MonoBehaviour
     public void StartFight(PlayerFighter enemyFighter)
     {
         _currentFighter = enemyFighter;
-        _enemy.MoveTo(enemyFighter.transform.position);
-        print("StartFight");
+
         if (_fight == null)
             _fight = StartCoroutine(Fight());
     }
@@ -44,14 +48,16 @@ public class EnemyFighter : MonoBehaviour
     public IEnumerator Fight()
     {
         float time = _delayBetweenAttack;
-        print("111");
+
         while (_currentFighter != null)
         {
+            _mover.MoveTo(_currentFighter.transform.position);
+
             time += Time.deltaTime;
-            print("222");
 
             if (time >= _delayBetweenAttack)
             {
+                _animator.SetBool("isFight", true);
                 TryAttack(_currentFighter);
                 time = 0;
             }
@@ -74,13 +80,24 @@ public class EnemyFighter : MonoBehaviour
     public void TryAttack(PlayerFighter enemyFighter)
     {
         if (Vector3.Distance(transform.position, enemyFighter.transform.position) > _distanceToAttack)
+        {
+            _animator.SetBool("isFight", false);
             return;
-
+        }
+        _animator.SetBool("isFight", true);
         enemyFighter.ApplyDamage(_damage);
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(int damage, Action onKill = null)
     {
-        _health.TakeDamage(damage);
+        if(_health.Health > 0)
+        _health.TakeDamage(damage, onKill);
+    }
+
+    public void Push(Vector3 direction, int damage)
+    {
+        Debug.Log("Push");
+        ApplyDamage(damage);
+        _rigidbody.AddForce(direction);
     }
 }

@@ -16,6 +16,8 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
 
     public event Action<Item> PickedUp;
     public event Action NewDo;
+    public event Action ClickEnemy;
+    public event Action ClickSpeaker;
 
     private void OnValidate()
     {
@@ -52,18 +54,18 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
         {
             _playerMover.MoveTo(item.transform.position);
             _checkDistance = StartCoroutine(CheckDistance(item.transform, _inventory.DistanceToAddItem, () => OnReachedItem(item)));
-            return;
         }
         else if (hit.collider.TryGetComponent(out Speaker speaker))
         {
             _playerMover.MoveTo(speaker.transform.position);
             _checkDistance = StartCoroutine(CheckDistance(speaker.transform, _questPerform.DistanceToSpeak, () => Speak(speaker)));
-            return;
         }
         else if(hit.transform.TryGetComponent(out EnemyFighter enemyFighter))
         {
             _playerMover.MoveTo(enemyFighter.transform.position);
             _checkDistance = StartCoroutine(CheckDistance(enemyFighter.transform, _playerFighter.DistanceAttack, () => Fight(enemyFighter)));
+            ClickEnemy?.Invoke();
+            print("ClickTOFight");
             return;
         }
         else
@@ -92,7 +94,9 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
     private void Speak(Speaker speak)
     {
         _playerMover.StopMove();
+        ClickSpeaker?.Invoke();
         speak.StartSpeak();
+        print("Speak");
     }
 
     private void Fight(EnemyFighter enemyFighter)
@@ -100,6 +104,7 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
         _playerFighter.StartFight(enemyFighter);
         _playerMover.StopMove();
         NewDo += StopFight;
+        print("StartFight");
     }
 
     private void StopFight()

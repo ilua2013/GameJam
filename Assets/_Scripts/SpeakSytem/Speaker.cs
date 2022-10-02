@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Speaker : MonoBehaviour
 {
+    [SerializeField] private string _name;
     [SerializeField] private QuestPerform _questPerform;
     [SerializeField] private List<string> _textDialog;
     [SerializeField] private string _textPerfomedQuest;
@@ -17,8 +18,11 @@ public class Speaker : MonoBehaviour
     public event Action<string> Speaked;
     public event Action ReadyAddedQuest;
     public event Action StartedSpeak;
+    public event Action<Speaker> StartedSpeak_getThis;
 
     public StateQuest e_StateQuest => _stateQuest;
+    public string Name => _name;
+    public int IndexDialof => _indexDialog;
 
     public enum StateQuest
     {
@@ -33,6 +37,7 @@ public class Speaker : MonoBehaviour
     public void StartSpeak()
     {
         StartedSpeak?.Invoke();
+        StartedSpeak_getThis?.Invoke(this);
     }
 
     public string Speak()
@@ -43,7 +48,7 @@ public class Speaker : MonoBehaviour
                 string dialog = _textDialog[_indexDialog];
                 Speaked?.Invoke(dialog);
 
-                if (_indexDialog == _textDialog.Count - 1)
+                if (_indexDialog == _textDialog.Count - 1 && _quest != null)
                     ReadyAddedQuest?.Invoke();
 
                 _indexDialog = _indexDialog >= _textDialog.Count - 1 ? 0 : _indexDialog + 1;

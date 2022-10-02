@@ -6,12 +6,14 @@ using System;
 public class QuestPerform : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private PlayerFighter _fighter;
     [SerializeField] private List<Quest> _quests;
     [SerializeField] private float _distanceToSpeak;
 
     public float DistanceToSpeak => _distanceToSpeak;
 
     public event Action AddedQuest;
+    public event Action CompletedQuest;
 
     public void AddQuest(Quest quest)
     {
@@ -20,7 +22,10 @@ public class QuestPerform : MonoBehaviour
 
         _quests.Add(quest);
 
-        quest.FollowQuestComplete(_inventory);
+        quest.FollowOnTakeItem(_inventory);
+        quest.FollowOnKill(_fighter);
+        quest.FollowOnSpeak();
+
         quest.Completed += RemoveQuest;
 
         AddedQuest?.Invoke();
@@ -31,5 +36,7 @@ public class QuestPerform : MonoBehaviour
         print("Quest finish");
         _quests.Remove(quest);
         quest.Completed -= RemoveQuest;
+
+        CompletedQuest?.Invoke();
     }
 }

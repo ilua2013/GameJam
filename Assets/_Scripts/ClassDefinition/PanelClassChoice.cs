@@ -8,6 +8,7 @@ public class PanelClassChoice : MonoBehaviour
 
     private void OnEnable()
     {
+        _healthBar.gameObject.SetActive(false);
         _classDefinition.ChoiceOver += ClosePanel;
     }
 
