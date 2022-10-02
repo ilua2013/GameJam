@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ExperenceAttracte : MonoBehaviour, IAddExperience
+public class ExperenceAttracte : MonoBehaviour
 {
     [SerializeField] private int _maxExperince;
     [SerializeField] private PlayerFighter _playerFighter;
