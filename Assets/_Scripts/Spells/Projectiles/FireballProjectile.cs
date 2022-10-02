@@ -10,18 +10,26 @@ public class FireballProjectile : Projectile
     [SerializeField] private float _curvature = 50f;
 
     private Rigidbody _rigidbody;
+    
+    public EnemyFighter Enemy { get; private set; }
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    protected override void Cast(Vector3 target, Action onTargetReached)
+    public void Init(EnemyFighter enemy, Action<Vector3> onTargetReached)
+    {
+        Enemy = enemy;
+        Cast(Enemy.transform.position, onTargetReached);
+    }
+
+    public override void Cast(Vector3 target, Action<Vector3> onTargetReached)
     {
         StartCoroutine(Casting(target, onTargetReached));
     }
 
-    private IEnumerator Casting(Vector3 target, Action onTargetReached)
+    private IEnumerator Casting(Vector3 target, Action<Vector3> onTargetReached)
     {
         while (Vector3.Distance(transform.position, target) > 1f)
         {
@@ -35,7 +43,7 @@ public class FireballProjectile : Projectile
             yield return new WaitForFixedUpdate();
         }
 
-        onTargetReached?.Invoke();
+        onTargetReached?.Invoke(_rigidbody.position);
         Destroy(gameObject);
     }
 }

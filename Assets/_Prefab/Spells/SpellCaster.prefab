@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3149657293633142855}
   - component: {fileID: 4660851924734777551}
   m_Layer: 0
-  m_Name: Impulse
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,8 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cooldownTime: 4
   _spawnPoint: {fileID: 2118541195262535677}
-  _damage: 5
-  _visualEffectTemplate: {fileID: 19848580, guid: 9e4fad450282ac64daeb20efbc2b9dfb, type: 3}
+  _armor: 90
+  _duration: 5
+  _visualEffectTemplate: {fileID: 19874298, guid: 831c85159903ac84399ac3c3e1d5c5ad, type: 3}
 --- !u!1 &3571935515177921850
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,9 +176,93 @@ Transform:
   - {fileID: 7008002905786262674}
   - {fileID: 4511895932286140303}
   - {fileID: 7906987592847519014}
+  - {fileID: 1034689879608997151}
   m_Father: {fileID: 7008002904633411081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3960649850694492882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4948557947826582380}
+  m_Layer: 0
+  m_Name: TargetPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4948557947826582380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960649850694492882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.958, z: 7.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1034689879608997151}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4362442098638279417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034689879608997151}
+  - component: {fileID: 700211077703679045}
+  m_Layer: 0
+  m_Name: Rocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034689879608997151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362442098638279417}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5019053532728461668}
+  - {fileID: 4948557947826582380}
+  m_Father: {fileID: 5033671355066178167}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700211077703679045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362442098638279417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce48c729c51b8b46a325d049bff5566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldownTime: 5
+  _spawnPoint: {fileID: 5019053532728461668}
+  _damage: 50
+  _targetPoint: {fileID: 4948557947826582380}
+  _projectile: {fileID: 8146472402635324771, guid: dbc8546defa6c5240b312e3420a63625, type: 3}
+  _explosionEffect: {fileID: 19894158, guid: 9f03f372adf02874cb666857a9f97abd, type: 3}
 --- !u!1 &5351755347663278690
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +389,37 @@ MonoBehaviour:
   _spawnPoint: {fileID: 4728967888192299704}
   _damage: 10
   _projectile: {fileID: 6071790500967483338, guid: 4dddc78d777bd59478e04d17a15c7b90, type: 3}
+--- !u!1 &8781294351956232096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5019053532728461668}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5019053532728461668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781294351956232096}
+  m_LocalRotation: {x: 0.510945, y: -0, z: -0, w: 0.85961336}
+  m_LocalPosition: {x: 0, y: 19.51, z: 1.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1034689879608997151}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 61.454, y: 0, z: 0}
 --- !u!1 &9067745040136541928
 GameObject:
   m_ObjectHideFlags: 0

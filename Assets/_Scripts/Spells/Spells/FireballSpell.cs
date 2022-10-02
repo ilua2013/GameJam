@@ -6,9 +6,9 @@ using UnityEngine;
 public class FireballSpell : Spell
 {
     [SerializeField] private int _damage;
-    [SerializeField] private Projectile _projectile;
+    [SerializeField] private FireballProjectile _projectile;
 
-    public Projectile Projectile => _projectile;
+    public FireballProjectile Projectile => _projectile;
     public int Damage => _damage;
 
     public override void Cast(EnemyFighter target)
@@ -19,7 +19,7 @@ public class FireballSpell : Spell
             return;
 
         var projectile = Instantiate(Projectile, SpawnPoint.position, SpawnPoint.rotation);
-        projectile.Init(target, () => target.ApplyDamage(Damage));
+        projectile.Init(target, (pos) => target.ApplyDamage(Damage));
 
         Cooldown();
     }
