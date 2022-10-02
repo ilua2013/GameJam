@@ -17,6 +17,7 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
     public event Action<Item> PickedUp;
     public event Action NewDo;
     public event Action ClickEnemy;
+    public event Action ClickSpeaker;
 
     private void OnValidate()
     {
@@ -93,7 +94,9 @@ public class InputClickHandler : MonoBehaviour, IItemPicker
     private void Speak(Speaker speak)
     {
         _playerMover.StopMove();
+        ClickSpeaker?.Invoke();
         speak.StartSpeak();
+        print("Speak");
     }
 
     private void Fight(EnemyFighter enemyFighter)

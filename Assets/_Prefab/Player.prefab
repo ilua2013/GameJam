@@ -141,10 +141,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31cb6718d21c7340937c9290100f2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onAttack: {fileID: 8300000, guid: edc8c038bfad05c4d92f190e9a6f83fc, type: 3}
-  _onKill: {fileID: 8300000, guid: 8b451a0388d1292468e7a7bba2bc75ee, type: 3}
   _fighter: {fileID: 3264682895918309760}
   _clickHandler: {fileID: 0}
+  _quest: {fileID: 0}
+  _delayBeetweenSoundWalk: 10
+  _onAttack: {fileID: 8300000, guid: edc8c038bfad05c4d92f190e9a6f83fc, type: 3}
+  _onKill: {fileID: 8300000, guid: 8b451a0388d1292468e7a7bba2bc75ee, type: 3}
+  _onAddQuest: {fileID: 8300000, guid: 8d42ce68089261945a70b19b2dc28f85, type: 3}
+  _onQuestCompleted: {fileID: 8300000, guid: c4f23329bfd03f844ae8e3890153bffd, type: 3}
+  _startSpeak: {fileID: 8300000, guid: 91a0f2c552e565a48a183aa5f207108d, type: 3}
+  _awakeSound: {fileID: 8300000, guid: 9fe592ae56bcf564e898000476fcdea7, type: 3}
+  _onWalk:
+  - {fileID: 8300000, guid: 27badbc625a49ce409761cec10502c52, type: 3}
 --- !u!1 &997821148264802249
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +184,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997821148264802249}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0.023773812, y: 1, z: 0.08082741}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

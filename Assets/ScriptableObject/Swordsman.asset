@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Swordsman
   m_EditorClassIdentifier: 
   _name: "\u041C\u0435\u0447\u043D\u0438\u043A"
-  _healt: 300
+  _healt: 750
   _strength: 10
   _agility: 10

@@ -13,6 +13,7 @@ public class QuestPerform : MonoBehaviour
     public float DistanceToSpeak => _distanceToSpeak;
 
     public event Action AddedQuest;
+    public event Action CompletedQuest;
 
     public void AddQuest(Quest quest)
     {
@@ -35,5 +36,7 @@ public class QuestPerform : MonoBehaviour
         print("Quest finish");
         _quests.Remove(quest);
         quest.Completed -= RemoveQuest;
+
+        CompletedQuest?.Invoke();
     }
 }

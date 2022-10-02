@@ -22,6 +22,7 @@ public class Speaker : MonoBehaviour
 
     public StateQuest e_StateQuest => _stateQuest;
     public string Name => _name;
+    public int IndexDialof => _indexDialog;
 
     public enum StateQuest
     {
@@ -47,7 +48,7 @@ public class Speaker : MonoBehaviour
                 string dialog = _textDialog[_indexDialog];
                 Speaked?.Invoke(dialog);
 
-                if (_indexDialog == _textDialog.Count - 1)
+                if (_indexDialog == _textDialog.Count - 1 && _quest != null)
                     ReadyAddedQuest?.Invoke();
 
                 _indexDialog = _indexDialog >= _textDialog.Count - 1 ? 0 : _indexDialog + 1;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   _name: "\u041B\u0443\u0447\u043D\u0438\u043A"
-  _healt: 100
+  _healt: 500
   _strength: 15
   _agility: 30

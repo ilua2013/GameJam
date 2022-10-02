@@ -14,7 +14,7 @@ public class UILookAtCamera : MonoBehaviour
     private void Update()
     {
         Vector3 targetLook = _camera.transform.position - transform.position;
-        targetLook.x = 0;
+        //targetLook.x = 0;
 
         transform.forward = -targetLook;
     }
