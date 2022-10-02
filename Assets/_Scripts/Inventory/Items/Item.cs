@@ -13,7 +13,6 @@ public enum ItemType
     Leggings
 }
 
-
 public class Item : MonoBehaviour
 {
     [SerializeField] private ItemTemplate _itemTemplate;
