@@ -10,7 +10,7 @@ public class ExperenceAttracte : MonoBehaviour, IAddExperience
 
     private int _level = 0;
     private int _experience;
-    private HealthEnemy _currentEnemyHealt = new HealthEnemy();
+    private HealthEnemy _currentEnemyHealt;
     private bool _isActivEnemy = false;
 
     public event UnityAction<int> Collected;
