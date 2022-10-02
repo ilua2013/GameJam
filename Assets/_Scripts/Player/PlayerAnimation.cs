@@ -22,24 +22,28 @@ public class PlayerAnimation : MonoBehaviour
     private void OnEnable()
     {
         _mover.Moved_getPos += SetRun;
-        _mover.Stoped += SetIdle;
+        _fighter.Killed += SetIdle;
         _fighter.Attacked += SetAttack;
     }
 
     private void OnDisable()
     {
         _mover.Moved_getPos -= SetRun;
-        _mover.Stoped -= SetIdle;
+        _fighter.Killed -= SetIdle;
         _fighter.Attacked -= SetAttack;
     }
 
     private void SetIdle()
     {
+        _animator.ResetTrigger(State.Attack.ToString());
         _animator.SetTrigger(State.Idle.ToString());
     }
 
     private void SetAttack()
     {
+        if (_fighter.IsFight == false)
+            return;
+
         _animator.SetTrigger(State.Attack.ToString());
         print("AnimatorAttack");
     }

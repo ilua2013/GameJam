@@ -6,6 +6,7 @@ using System;
 public class QuestPerform : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private PlayerFighter _fighter;
     [SerializeField] private List<Quest> _quests;
     [SerializeField] private float _distanceToSpeak;
 
@@ -20,7 +21,10 @@ public class QuestPerform : MonoBehaviour
 
         _quests.Add(quest);
 
-        quest.FollowQuestComplete(_inventory);
+        quest.FollowOnTakeItem(_inventory);
+        quest.FollowOnKill(_fighter);
+        quest.FollowOnSpeak();
+
         quest.Completed += RemoveQuest;
 
         AddedQuest?.Invoke();

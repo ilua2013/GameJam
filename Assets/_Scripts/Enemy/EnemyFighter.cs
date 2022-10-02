@@ -6,7 +6,7 @@ using System;
 public class EnemyFighter : MonoBehaviour
 {
     [SerializeField] private HealthEnemy _health;
-    [SerializeField] private EnemyMover _enemy;
+    [SerializeField] private EnemyMover _mover;
     [SerializeField] private ColliderEnemy _collider;
     [SerializeField] private int _damage;
     [SerializeField] private float _distanceToAttack;
@@ -30,7 +30,7 @@ public class EnemyFighter : MonoBehaviour
     public void StartFight(PlayerFighter enemyFighter)
     {
         _currentFighter = enemyFighter;
-        _enemy.MoveTo(enemyFighter.transform.position);
+
         if (_fight == null)
             _fight = StartCoroutine(Fight());
     }
@@ -44,8 +44,11 @@ public class EnemyFighter : MonoBehaviour
     public IEnumerator Fight()
     {
         float time = _delayBetweenAttack;
+
         while (_currentFighter != null)
         {
+            _mover.MoveTo(_currentFighter.transform.position);
+
             time += Time.deltaTime;
 
             if (time >= _delayBetweenAttack)
