@@ -10,6 +10,7 @@ public class EnemyFighter : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private float _distanceToAttack;
     [SerializeField] private float _delayBetweenAttack;
+    [SerializeField] private Animator _animator;
 
     private Coroutine _fight;
     private PlayerFighter _currentFighter;
@@ -52,6 +53,7 @@ public class EnemyFighter : MonoBehaviour
 
             if (time >= _delayBetweenAttack)
             {
+                _animator.SetBool("isFight", true);
                 TryAttack(_currentFighter);
                 time = 0;
             }
@@ -74,8 +76,11 @@ public class EnemyFighter : MonoBehaviour
     public void TryAttack(PlayerFighter enemyFighter)
     {
         if (Vector3.Distance(transform.position, enemyFighter.transform.position) > _distanceToAttack)
+        {
+            _animator.SetBool("isFight", false);
             return;
-
+        }
+        _animator.SetBool("isFight", true);
         enemyFighter.ApplyDamage(_damage);
     }
 
