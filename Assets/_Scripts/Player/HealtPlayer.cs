@@ -29,7 +29,7 @@ public class HealtPlayer : MonoBehaviour, IDamageable
     {
         _currentHealt -= damage;
         ChangedHealt?.Invoke(_currentHealt);
-        Damaged?.Invoke(damage);
+        Damaged?.Invoke(_currentHealt);
         if (_currentHealt <= 0)
         {
             PlayerDied?.Invoke();

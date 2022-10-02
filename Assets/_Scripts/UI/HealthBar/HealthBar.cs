@@ -6,7 +6,7 @@ using System;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour _playerDamageable;
+    [SerializeField] private GameObject _playerDamageable;
     [SerializeField] private Image _slider;
 
     private IDamageable _damageable;
