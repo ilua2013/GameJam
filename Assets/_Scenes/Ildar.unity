@@ -1642,6 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c9e1597ed37044caf4698c37c06e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 
   _questPerform: {fileID: 2348208049191686029}
   _textDialog:
   - "\u041F\u0440\u0438\u0432\u0435\u0442"
@@ -5144,7 +5145,7 @@ PrefabInstance:
     - target: {fileID: 3261398356511503628, guid: 181f3a1e245432e4b8e0ee2f9b6c8e63, type: 3}
       propertyPath: _playerDamageable
       value: 
-      objectReference: {fileID: 1325107673}
+      objectReference: {fileID: 2348208049191686031}
     - target: {fileID: 3261398356511503630, guid: 181f3a1e245432e4b8e0ee2f9b6c8e63, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5584,8 +5585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1487493949}
-  _enemy: {fileID: 1487493948}
+  _mover: {fileID: 0}
   _collider: {fileID: 330418497}
+  _rigidbody: {fileID: 0}
   _damage: 10
   _distanceToAttack: 1
   _delayBetweenAttack: 1
@@ -8140,8 +8142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 2060424750}
-  _enemy: {fileID: 2060424749}
+  _mover: {fileID: 2060424749}
   _collider: {fileID: 1808374188}
+  _rigidbody: {fileID: 2060424747}
   _damage: 10
   _distanceToAttack: 1
   _delayBetweenAttack: 1
@@ -8793,6 +8796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 2348208049191686028}
+  _fighter: {fileID: 2348208049191686032}
   _quests: []
   _distanceToSpeak: 4
 --- !u!114 &2348208049191686031
