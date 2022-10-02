@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EnemyFighter : MonoBehaviour, IPushable
+public class EnemyFighter : MonoBehaviour
 {
     [SerializeField] private HealthEnemy _health;
     [SerializeField] private EnemyMover _mover;
@@ -92,12 +92,5 @@ public class EnemyFighter : MonoBehaviour, IPushable
     {
         if(_health.Health > 0)
         _health.TakeDamage(damage, onKill);
-    }
-
-    public void Push(Vector3 direction, int damage)
-    {
-        Debug.Log("Push");
-        ApplyDamage(damage);
-        _rigidbody.AddForce(direction);
     }
 }

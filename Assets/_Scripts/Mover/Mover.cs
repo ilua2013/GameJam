@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Mover : MonoBehaviour, IPauseHandler
 {
@@ -45,6 +47,9 @@ public class Mover : MonoBehaviour, IPauseHandler
 
     public void MoveTo(Vector3 position)
     {
+        if (_agent.enabled == false)
+            return;
+
         _agent.SetDestination(position);
 
         Moved_getPos?.Invoke(position);
