@@ -7,10 +7,11 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Mover _mover;
     [SerializeField] private PlayerFighter _fighter;
+    [SerializeField] private float _distanceToRun;
 
     enum State
     {
-        Idle, Attack, Run, Move
+        Idle, Attack, Run, Move, Walk
     }
 
     private void Update()
@@ -20,14 +21,14 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnEnable()
     {
-        _mover.Moved += SetRun;
+        _mover.Moved_getPos += SetRun;
         _mover.Stoped += SetIdle;
         _fighter.Attacked += SetAttack;
     }
 
     private void OnDisable()
     {
-        _mover.Moved -= SetRun;
+        _mover.Moved_getPos -= SetRun;
         _mover.Stoped -= SetIdle;
         _fighter.Attacked -= SetAttack;
     }
@@ -43,8 +44,11 @@ public class PlayerAnimation : MonoBehaviour
         print("AnimatorAttack");
     }
 
-    private void SetRun()
+    private void SetRun(Vector3 pos)
     {
-        _animator.SetTrigger(State.Run.ToString());
+        if (Vector3.Distance(transform.position, pos) > _distanceToRun)
+            _animator.SetTrigger(State.Run.ToString());
+        else
+            _animator.SetTrigger(State.Walk.ToString());
     }
 }
