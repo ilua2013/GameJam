@@ -28,6 +28,9 @@ public class PlayerParameter : MonoBehaviour
         _healtMax = healt;
         _strengthMax = strength;
         _agilityMax = agility;
+        ChangedMaxHealt?.Invoke(_healtMax);
+        ChangedMaxStrength?.Invoke(_strengthMax);
+        ChangedMaxAgility?.Invoke(_agilityMax);
     }
 
     public void IncreaseMaxHealt(int value)

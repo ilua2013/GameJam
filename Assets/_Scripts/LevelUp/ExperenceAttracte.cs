@@ -6,18 +6,41 @@ using UnityEngine.Events;
 public class ExperenceAttracte : MonoBehaviour, IAddExperience
 {
     [SerializeField] private int _maxExperince;
+    [SerializeField] private PlayerFighter _playerFighter;
 
     private int _level = 0;
     private int _experience;
+    private HealthEnemy _currentEnemyHealt = new HealthEnemy();
+    private bool _isActivEnemy = false;
 
     public event UnityAction<int> Collected;
     public event UnityAction LevelReceived;
+
+    private void OnEnable()
+    {
+        _playerFighter.BattleBegun += AddBattleExperience;
+    }
+    private void OnDisable()
+    {
+        _currentEnemyHealt.Died -= BattleTakeExperience;
+        _playerFighter.BattleBegun -= AddBattleExperience;
+    }
+
+    public void BattleTakeExperience(int experience)
+    {
+        if (_isActivEnemy)
+        {
+            TakeExperience(experience);
+        }
+        _currentEnemyHealt.Died -= BattleTakeExperience;
+    }
 
     public void TakeExperience(int experience)
     {
         _experience += experience;
         LevelUp();
         Collected?.Invoke(_experience);
+        _isActivEnemy = false;
     }
 
     private void LevelUp()
@@ -25,8 +48,15 @@ public class ExperenceAttracte : MonoBehaviour, IAddExperience
         if (_experience >= _maxExperince)
         {
             _level += 1;
-            _experience -= _maxExperince;           
+            _experience -= _maxExperince;
             LevelReceived?.Invoke();
         }
+    }
+
+    private void AddBattleExperience(EnemyFighter enemyFighter)
+    {
+        _isActivEnemy = true;
+        _currentEnemyHealt = enemyFighter.GetComponent<HealthEnemy>();
+        _currentEnemyHealt.Died += BattleTakeExperience;
     }
 }

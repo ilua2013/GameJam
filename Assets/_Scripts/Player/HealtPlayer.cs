@@ -12,12 +12,9 @@ public class HealtPlayer : MonoBehaviour
     public event UnityAction<int> ChangedHealt;
 
     private void OnEnable()
-    {
-        _maxHealt = _playerParameter.MaxHealt;
-        _currentHealt = _maxHealt;
-
+    {       
         _playerParameter.ChangedMaxHealt += IncreaseMaxHealt; 
-    }
+    }   
 
     private void OnDisable()
     {
@@ -47,5 +44,6 @@ public class HealtPlayer : MonoBehaviour
     private void IncreaseMaxHealt(int maxHealt)
     {
         _maxHealt = maxHealt;
+        _currentHealt = _maxHealt;
     }
 }

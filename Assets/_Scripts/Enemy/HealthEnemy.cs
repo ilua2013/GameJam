@@ -6,10 +6,11 @@ using System;
 public class HealthEnemy : MonoBehaviour
 {
     [SerializeField] private int _maxHealt;
+    [SerializeField] private int _experience;
 
-    private int _currentHealt;
+    private int _currentHealt;  
 
-    public event Action Died;
+    public event Action<int> Died;
     public event Action<int> ChangedHealt;
 
     private void OnEnable()
@@ -23,7 +24,7 @@ public class HealthEnemy : MonoBehaviour
         ChangedHealt?.Invoke(_currentHealt);
         if (_currentHealt <= 0)
         {
-            Died?.Invoke();
+            Died?.Invoke(_experience);
             gameObject.SetActive(false);
         }
     }

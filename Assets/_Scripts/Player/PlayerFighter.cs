@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerFighter : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerFighter : MonoBehaviour
     private Coroutine _fight = null;
     private EnemyFighter _currentFighter;
 
+    public event UnityAction<EnemyFighter> BattleBegun;
+
     public float DistanceAttack => _distanceToAttack;
 
     public void StartFight(EnemyFighter enemyFighter)
@@ -20,6 +23,7 @@ public class PlayerFighter : MonoBehaviour
 
         if (_fight == null)
             _fight = StartCoroutine(Fight());
+        BattleBegun?.Invoke(enemyFighter);
     }
 
     public void StopFight()
