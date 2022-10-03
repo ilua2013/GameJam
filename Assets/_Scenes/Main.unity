@@ -8759,15 +8759,15 @@ PrefabInstance:
     - target: {fileID: 1455887681868448821, guid: 7f94f44acac5ed042b1b73f2f3e5a290, type: 3}
       propertyPath: _playerParameter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1877096742}
     - target: {fileID: 1455887683268471387, guid: 7f94f44acac5ed042b1b73f2f3e5a290, type: 3}
       propertyPath: _playerParameter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1877096742}
     - target: {fileID: 1455887683418363224, guid: 7f94f44acac5ed042b1b73f2f3e5a290, type: 3}
       propertyPath: _playerParameter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1877096742}
     - target: {fileID: 1455887683492380280, guid: 7f94f44acac5ed042b1b73f2f3e5a290, type: 3}
       propertyPath: m_IsActive
       value: 0
