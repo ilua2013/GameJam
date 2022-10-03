@@ -7572,9 +7572,33 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u041A\u0442\u043E \u0431\u0443\u0434\u0435\u0448\u044C?\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 4403607095513215576, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
+    - target: {fileID: 4403607095513215576, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403607095513215576, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8690591861142563998, guid: 8d34560b6d49c4469b2174ccd34ae34b, type: 2}
+    - target: {fileID: 6710584872339214677, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710584872339214677, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -226
+      objectReference: {fileID: 0}
     - target: {fileID: 6710584872339214678, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
       propertyPath: m_text
       value: "\u0411\u044B\u0447\u0430\u0440\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710584872339214678, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6710584873423678376, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
       propertyPath: m_Name
@@ -7680,10 +7704,26 @@ PrefabInstance:
       propertyPath: _classDefinition
       value: 
       objectReference: {fileID: 676402253}
+    - target: {fileID: 6710584873941447720, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -194
+      objectReference: {fileID: 0}
     - target: {fileID: 6710584873941447721, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
       propertyPath: m_text
       value: "\u0412\u043E\u043B\u0447\u0430\u0440\u0430\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 6710584873941447721, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ecd17aeceaba4c10b42ac497ccbfcff, type: 2}
+    - target: {fileID: 6710584873941447721, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710584873941447721, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2830636965969884548, guid: 8ecd17aeceaba4c10b42ac497ccbfcff, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
 --- !u!224 &1446543665 stripped
