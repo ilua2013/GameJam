@@ -21,8 +21,7 @@ public class ExperenceAttracte : MonoBehaviour
         _playerFighter.BattleBegun += AddBattleExperience;
     }
     private void OnDisable()
-    {
-        _currentEnemyHealt.Died -= BattleTakeExperience;
+    {        
         _playerFighter.BattleBegun -= AddBattleExperience;
     }
 
