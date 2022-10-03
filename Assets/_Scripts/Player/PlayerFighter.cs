@@ -10,6 +10,7 @@ public class PlayerFighter : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private float _distanceToAttack;
     [SerializeField] private float _delayBetweenAttack;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     private Coroutine _fight = null;
     private EnemyFighter _currentFighter = null;
@@ -23,6 +24,11 @@ public class PlayerFighter : MonoBehaviour
     public bool IsFight => _currentFighter != null;
 
     public EnemyFighter CurrentFighter => _currentFighter;
+
+    private void OnEnable()
+    {
+        _particleSystem.Stop();
+    }
 
     public void StartFight(EnemyFighter enemyFighter)
     {
@@ -79,6 +85,7 @@ public class PlayerFighter : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
+        _particleSystem.Play();
         _health.TakeDamage(damage);
     }
 

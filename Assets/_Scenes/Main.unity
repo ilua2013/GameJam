@@ -1451,6 +1451,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1729e1993c513314aa9a19e3dc05781c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &277906348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843255694117389304, guid: 51dcf1ad1f67b8543a139de74a516552, type: 3}
+  m_PrefabInstance: {fileID: 284142272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &284142272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7563,6 +7568,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 40383829}
     m_Modifications:
+    - target: {fileID: 4403607095513215576, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_text
+      value: "\u041A\u0442\u043E \u0431\u0443\u0434\u0435\u0448\u044C?\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710584872339214678, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_text
+      value: "\u0411\u044B\u0447\u0430\u0440\u0430"
+      objectReference: {fileID: 0}
     - target: {fileID: 6710584873423678376, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
       propertyPath: m_Name
       value: ChooseClassPanel
@@ -7660,9 +7673,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2074079606}
     - target: {fileID: 6710584873423678378, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: _spellPanel
+      value: 
+      objectReference: {fileID: 277906348}
+    - target: {fileID: 6710584873423678378, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
       propertyPath: _classDefinition
       value: 
       objectReference: {fileID: 676402253}
+    - target: {fileID: 6710584873941447721, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
+      propertyPath: m_text
+      value: "\u0412\u043E\u043B\u0447\u0430\u0440\u0430\n"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c011ce9bd59422846ae1405ee2620c9e, type: 3}
 --- !u!224 &1446543665 stripped
