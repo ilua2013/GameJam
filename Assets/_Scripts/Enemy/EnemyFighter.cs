@@ -13,6 +13,8 @@ public class EnemyFighter : MonoBehaviour
     [SerializeField] private float _distanceToAttack;
     [SerializeField] private float _delayBetweenAttack;
     [SerializeField] private Animator _animator;
+    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _particleSystemPuddle;
 
     private Coroutine _fight;
     private PlayerFighter _currentFighter;
@@ -23,6 +25,8 @@ public class EnemyFighter : MonoBehaviour
 
     private void OnEnable()
     {
+        _particleSystem.Stop();
+        _particleSystemPuddle.Stop();
         _collider.ViewPlayer += StartFight;
     }
 
@@ -90,7 +94,9 @@ public class EnemyFighter : MonoBehaviour
 
     public void ApplyDamage(int damage, Action onKill = null)
     {
-        if(_health.Health > 0)
-        _health.TakeDamage(damage, onKill);
+        _particleSystem.Play();
+        _particleSystemPuddle.Play();
+        if (_health.Health > 0)
+            _health.TakeDamage(damage, onKill);
     }
 }
